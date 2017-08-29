@@ -25,4 +25,15 @@ class Product extends BaseModel
         $products = self::limit($count)->order('create_time desc')->select();
         return $products;
     }
+    //查询具体分类下的商品
+    public static function getProductsByCategoryID($categoryID)
+    {
+        $products = self::where('category_id','=',$categoryID)->select();
+        return $products;
+    }
+    //查询具体某个商品的详情
+    public function getProductDetail($id)
+    {
+
+    }
 }

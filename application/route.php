@@ -15,3 +15,12 @@ Route::get('/api/v1/theme','api/v1.theme/getSimpleList');
 Route::get('/api/v1/theme/:id','api/v1.theme/getComplexOne');
 //获取最新的商品
 Route::get('/api/v1/product/recent','api/v1.product/getRecent');
+//分类列表下的具体详情.
+Route::get('/api/v1/product/by_category','api/v1.product/getAllInCategory');
+//具体某个商品详情页
+Route::get('/api/v1/product/:id','api/v1.product/getOne');
+
+//分类列表
+Route::get('/api/v1/category/all','api/v1.category/getAllCategories');
+//获取用户的token
+Route::post('/api/v1/token/user','api/v1.token/getToken');

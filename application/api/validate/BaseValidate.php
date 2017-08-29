@@ -33,7 +33,6 @@ class BaseValidate extends Validate
             return true;
         }
     }
-
     //检查是不是正整数
     protected function isPostiveInteger($value, $rule='',$data='',$field='')
     {
@@ -41,6 +40,15 @@ class BaseValidate extends Validate
             return true;
         }else{
             return false;
+        }
+    }
+    //判断防止用户传空值
+    public function isNotEmpty($value, $rule='',$data='',$field='')
+    {
+        if(empty($value)){
+            return false;
+        }else{
+            return true;
         }
     }
 }
