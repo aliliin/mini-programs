@@ -9,6 +9,11 @@
 namespace app\api\service;
 
 
+use app\lib\exception\TokenException;
+use think\Cache;
+use think\Exception;
+use think\Request;
+
 class Token
 {
     //生成token令牌
@@ -22,6 +27,33 @@ class Token
         $salt = 'ahfidDJUAE232DDDAFJD';
 
         return md5($randChars.$timestamp.$salt);
+    }
+    //写个通用的方法,来获取用户的各种信息.
+    public static function getCurrentTokenVar($key)
+    {
+        //t通过header 获取
+        $token = Request::instance()->header('token');
+        $vars = Cache::get($token);
 
+        if(!$vars){
+            throw new TokenException();
+        }else{
+
+            if(!is_array($vars)){
+                $vars = json_decode($vars,true);
+            }
+
+            if(array_key_exists($key,$vars)){
+                return $vars[$key];
+            }else{
+                throw new Exception('尝试获取的Token变量并不存在');
+            }
+        }
+    }
+    public static function getCurrentUid()
+    {
+        //token令牌
+        $uid = self::getCurrentTokenVar('uid');
+        return $uid;
     }
 }

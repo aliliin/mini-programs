@@ -51,4 +51,29 @@ class BaseValidate extends Validate
             return true;
         }
     }
+    //判断用户传入的数据 规则
+    public function getDataByRule($arrays)
+    {
+        if(array_key_exists('user_id',$arrays)|array_key_exists('uid',$arrays)){
+            throw new ParameterException([
+                'message' => '参数中包含有非法字符,参数名user_id,或者uid'
+            ]);
+        }
+        $newArray = [];
+        foreach ($this->rule as $key => $value) {
+            $newArray[$key] = $arrays[$key];
+        }
+        return $newArray;
+    }
+    //自定义验证规则手机号
+    public function isMobile($value)
+    {
+        $rule = '^1(3|4|5|7|8)[0-9]\d{8}$^';
+        $result = preg_match($rule,$value);
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

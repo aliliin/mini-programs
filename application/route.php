@@ -24,3 +24,5 @@ Route::get('/api/v1/product/:id','api/v1.product/getOne');
 Route::get('/api/v1/category/all','api/v1.category/getAllCategories');
 //获取用户的token
 Route::post('/api/v1/token/user','api/v1.token/getToken');
+//用户的收货地址
+Route::post('/api/v1/address','api/v1.address/createOrUpdateAddress');

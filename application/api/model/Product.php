@@ -43,7 +43,7 @@ class Product extends BaseModel
     public static  function getProductDetail($id)
     {
         //$product = self::with(['imgs.imgUrl','properties'])->find($id);
-        //为了解决商品详情中国图片排序的问题.
+        //为了解决商品详情中 图片排序的问题.
         $product = self::with([
             'imgs' => function($query){
                 $query->with(['imgUrl'])

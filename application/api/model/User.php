@@ -11,9 +11,16 @@ namespace app\api\model;
 
 class User extends BaseModel
 {
+    //关联关系.一对多. 一位用户可以拥有多个不同地址.
+    public function address()
+    {
+        return $this->hasMany('UserAddress','user_id','id');
+    }
+
     public static function getByOpenID($openid)
     {
         $user = self::where('openid','=',$openid)->find();
         return $user;
     }
+
 }
