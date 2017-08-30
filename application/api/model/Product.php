@@ -14,6 +14,14 @@ class Product extends BaseModel
 {
     protected $hidden =  ['delete_time','update_time','pivot','create_time','category_id','from'];
 
+    public function imgs()
+    {
+        return $this->hasMany('ProductImage','product_id','id');
+    }
+    public function properties()
+    {
+        return $this->hasMany('ProductProperty','product_id','id');
+    }
     public function getMainImgUrlAttr($val,$data)
     {
         return $this->prefixImgUrl($val,$data);
@@ -32,8 +40,17 @@ class Product extends BaseModel
         return $products;
     }
     //查询具体某个商品的详情
-    public function getProductDetail($id)
+    public static  function getProductDetail($id)
     {
+        //$product = self::with(['imgs.imgUrl','properties'])->find($id);
+        //为了解决商品详情中国图片排序的问题.
+        $product = self::with([
+            'imgs' => function($query){
+                $query->with(['imgUrl'])
+                    ->order('order','asc');
+            }
+        ])->with(['properties'])->find($id);
+        return $product;
 
     }
 }
