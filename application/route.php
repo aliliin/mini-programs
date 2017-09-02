@@ -7,7 +7,10 @@ use think\Route;
  *          url的后缀，你的控制器方法     GET|POST   判断https访问但是必须是数组
  */
 
+<<<<<<< HEAD
 Route::get('/','api/v1.index/index');
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
 //主题banner
 Route::get('api/v1/banner/:id','api/v1.Banner/getBanner');
 //获取主题的路由.
@@ -27,6 +30,9 @@ Route::get('/api/v1/category/all','api/v1.category/getAllCategories');
 Route::post('/api/v1/token/user','api/v1.token/getToken');
 //用户的收货地址
 Route::post('/api/v1/address','api/v1.address/createOrUpdateAddress');
+<<<<<<< HEAD
 
 //用户下单接口
 Route::post('/api/v1/order','api/v1.order/placeOrder');
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1

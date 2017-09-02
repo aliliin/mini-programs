@@ -9,8 +9,11 @@
 namespace app\api\service;
 
 
+<<<<<<< HEAD
 use app\lib\enum\ScopeEnum;
 use app\lib\exception\ForbiddenException;
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
 use app\lib\exception\TokenException;
 use think\Cache;
 use think\Exception;
@@ -58,6 +61,7 @@ class Token
         $uid = self::getCurrentTokenVar('uid');
         return $uid;
     }
+<<<<<<< HEAD
 
     //用户需要权限的验证 用户跟管理员都可以访问的接口
     public static function needPrimaryScope()
@@ -91,4 +95,6 @@ class Token
 
 
 
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
 }

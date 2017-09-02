@@ -10,7 +10,10 @@ namespace app\api\service;
 
 
 use app\api\model\User;
+<<<<<<< HEAD
 use app\lib\enum\ScopeEnum;
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
 use app\lib\exception\TokenException;
 use app\lib\exception\WeChatException;
 use think\Exception;
@@ -73,11 +76,15 @@ class UserToken extends Token
             $uid = $this->newUser($openid);
         }
         $cachedValue = $this->prepareCachedValue($wxResult,$uid);
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
         $token = $this->saveToCached($cachedValue);
         return $token;
     }
     //写入缓存
+<<<<<<< HEAD
     private function saveToCached($wxResult)
     {
         $key = self::generateToken();
@@ -85,6 +92,15 @@ class UserToken extends Token
         $expire_id = config('setting.token_expire_in');
 
         //用tp5自带的写入缓存的函数. cache(key,value,过期时间); 默认使用的是文件的缓存存入系统
+=======
+    private function saveToCached($cachedValue)
+    {
+        $key = self::generateToken();
+        $value = json_encode($cachedValue);
+        $expire_id = config('setting.token_expire_in');
+
+        //用tp5知道的写入缓存的函数. cache(key,value,过期时间); 默认使用的是文件的缓存存入系统
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
         $request = cache($key,$value,$expire_id);
         if(!$request){
             throw new TokenException([
@@ -99,11 +115,15 @@ class UserToken extends Token
     {
         $cachedValue = $wxResult;
         $cachedValue['uid'] = $uid;
+<<<<<<< HEAD
         //User (16)代表app用户的权限数值 这里使用了枚举类型
         //Super(32) 代表CMS(管理员)用户的权限数值
         $cachedValue['scope'] = ScopeEnum::User; //作用域 可以用来做分组
 
         return $cachedValue;
+=======
+        $cachedValue['scope'] = 16;
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
     }
     //插入用户
     private function newUser($openid){

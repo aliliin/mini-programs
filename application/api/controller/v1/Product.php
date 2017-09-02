@@ -52,10 +52,13 @@ class Product
             throw new ProductExcepiton();
         }
         return $product;
+<<<<<<< HEAD
     }
     //删除商品的方法.要又权限分类控制了.
     public function deleteOne()
     {
+=======
+>>>>>>> d7378c720ca05b0c5a57f4882e0d6c5f734868b1
 
     }
 }
